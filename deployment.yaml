@@ -6,11 +6,11 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app: web
+      app: bala
   template:
     metadata:
-      labels:
-        app: web
+      labels: 
+        app: bala
     spec:
       containers:
       - name: cart-app
@@ -24,6 +24,20 @@ spec:
             cpu: "50m"
         ports:
         - containerPort: 3015
+--- 
+# writing service.yml to expose the applications
+apiVersion: v1 
+kind: apiVersion: v1
+kind: Service
+metadata:
+  name: bala-flower-app-svc
+spec:
+  selector:
+    app: bala
+  ports:
+  - port: 3016  
+    targetPort: 3015
+  type: LoadBalancer
 
 
 
